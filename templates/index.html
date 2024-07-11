@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regression Model Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://www.shutterstock.com/image-photo/vintage-tone-blur-image-house-600nw-507739450.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* White background with 80% opacity */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #343a40;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-1">House Price Prediction</h1>
+        <form action="/predict" method="POST" class="mt-3">
+            <div class="form-group">
+                <label for="Avg. Area Income" class="form-label">Average Area Income(in Rupees):</label>
+                <input type="number" step="any" class="form-control" id="Avg. Area Income" name="Avg. Area Income" required>
+            </div>
+            <div class="form-group">
+                <label for="Avg. Area House Age" class="form-label">Average House Age(in Years):</label>
+                <input type="number" step="any" class="form-control" id="Avg. Area House Age" name="Avg. Area House Age" required>
+            </div>
+            <div class="form-group">
+                <label for="Avg. Area Number of Rooms" class="form-label">Average Number of Rooms:</label>
+                <input type="number" step="any" class="form-control" id="Avg. Area Number of Rooms" name="Avg. Area Number of Rooms" required>
+            </div>
+            <div class="form-group">
+                <label for="Avg. Area Number of Bedrooms" class="form-label">Average Number of Bedrooms:</label>
+                <input type="number" step="any" class="form-control" id="Avg. Area Number of Bedrooms" name="Avg. Area Number of Bedrooms" required>
+            </div>
+            <div class="form-group">
+                <label for="Area Population" class="form-label">Area Population:</label>
+                <input type="number" step="any" class="form-control" id="Area Population" name="Area Population" required>
+            </div>
+            <div class="form-group">
+                <label for="model" class="form-label">Select Model:</label>
+                <select class="form-control" id="model" name="model">
+                    {% for model_name in model_names %}
+                        <option value="{{ model_name }}">{{ model_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+        </form>
+        <div class="text-center mt-4">
+            <a href="/results" class="btn btn-secondary">View Model Evaluation Results</a>
+        </div>
+    </div>
+</body>
+</html>
